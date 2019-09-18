@@ -1,5 +1,34 @@
 function(context, args)
 {
+	// DISCLAIMER:
+	// The following code was written for recreational use and does not necessarily follow best programming practices.
+	// Additionally, the code is subject to several constraints imposed by the Hackmud developer for safety and gameplay reasons.
+	//   These restrictions include, but are not limited to:
+	//     The "this" keyword is illegal
+	//     The "exec" function is illegal
+	//     
+	//     The script must finish execution within 5000ms or its execution will be halted
+	//     The script must not exceed the character count granted to the script owner by their in-game upgrades (not including whitespace and single-line comments)
+	//     The script must not exceed 32000 characters under any circumstance (including whitespace and comments)
+	// 
+	// Additionally, several things allowed by Hackmud are not legal in regular JavaScript.
+	//   These include, but are not limited to:
+	//     #<sec>s.<script owner>.<script name>(<args>) : Calls another script, where <sec> is the lowest in-game security level you are allowing the script to be called at. For example, #fs.scripts.lib()
+	// 
+	//     #db.<i/f/r/u/us/u1>() : Utilize the MongoDB database instance of this script's owner.
+	//       i: insert
+	//       f: find
+	//       r: remove
+	//       u: update
+	//       us: upsert
+	//       u1: update 1
+	// 
+	//     #FMCL : Function Multi-Call Lock. Becomes true if this script has already been called as a subscript in the current top-level script run, and false otherwise.
+	// 
+	//     "`<colour character><string>`" : Text displayed on the in-game CLI will be displayed as <string> in the colour the game associates the <colour character> with.
+	// 
+	
+	
 	
 	// TO DO:
 	// 
@@ -107,7 +136,7 @@ function(context, args)
 			break;
 		
 		case( "write" ) :
-			if( #FMCL ) return { ok : false , msg : "You may not write more than once per script run." }
+			if( #FMCL ) return { ok : false , msg : "You may not write more than once per top-level script run." }
 			
 			let tooFast = false , pastWrites = #db.f( { caller : context.caller , script : context.this_script , type : "spam_protector" } , { last : 1 } ).first() , outgoingPost = {};
 			if( typeof pastWrites.last == "number" ) {
