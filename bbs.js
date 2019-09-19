@@ -2,14 +2,17 @@ function(context, args)
 {
 	// DISCLAIMER:
 	// The following code was written for recreational use and does not necessarily follow best programming practices.
+	// 
+	// 
 	// Additionally, the code is subject to several constraints imposed by the Hackmud developer for safety and gameplay reasons.
 	//   These restrictions include, but are not limited to:
 	//     The "this" keyword is illegal
 	//     The "exec" function is illegal
 	//     
 	//     The script must finish execution within 5000ms or its execution will be halted
-	//     The script must not exceed the character count granted to the script owner by their in-game upgrades (not including whitespace and single-line comments)
+	//     The script must not exceed the character count granted to the script owner by their in-game upgrades (not including whitespace and SINGLE-LINE comments, but including MULTI-LINE comments for some reason)
 	//     The script must not exceed 32000 characters under any circumstance (including whitespace and comments)
+	// 
 	// 
 	// Additionally, several things allowed by Hackmud are not legal in regular JavaScript.
 	//   These include, but are not limited to:
